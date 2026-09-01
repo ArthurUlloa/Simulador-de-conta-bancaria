@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevBank - Simulador de Conta Bancária</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TELA DE LOGIN -->
+  <div id="loginPage" class="screen active">
+    <div class="card login-card">
+      <div class="logo">🏦 DevBank</div>
+      <h2>Acesse sua conta</h2>
+      
+      <div id="loginAlert" class="alert hidden"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="pixKey">Chave PIX (CPF/E-mail/Telefone):</label>
+          <input type="text" id="pixKey" placeholder="Ex: arthur@email.com ou 12345" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Senha:</label>
+          <input type="password" id="password" placeholder="Digite 1234" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TELA DO DASHBOARD (PAINEL) -->
+  <div id="appPage" class="screen">
+    <header class="navbar">
+      <div class="logo">🏦 DevBank</div>
+      <div class="user-info">
+        Olá, <strong id="userName">Arthur</strong>
+        <button id="logoutBtn" class="btn-logout">Sair</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- MENSAGENS DE ERRO E SUCESSO -->
+      <div id="appAlert" class="alert hidden"></div>
+
+      <!-- CARD DE SALDO -->
+      <div class="card balance-card">
+        <span>Saldo disponível</span>
+        <h1 id="balanceDisplay">R$ 0,00</h1>
+      </div>
+
+      <!-- AÇÕES (DEPOSITO E TRANSFERENCIA) -->
+      <div class="grid-actions">
+        <!-- Card de Depósito -->
+        <div class="card action-card">
+          <h3>📥 Depósito (Entrada)</h3>
+          <form id="depositForm">
+            <div class="form-group">
+              <label for="depositAmount">Valor (R$):</label>
+              <input type="number" id="depositAmount" step="0.01" min="0.01" placeholder="0,00" required>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Confirmar Depósito</button>
+          </form>
+        </div>
+
+        <!-- Card de Transferência PIX -->
+        <div class="card action-card">
+          <h3>💸 Transferência PIX</h3>
+          <form id="transferForm">
+            <div class="form-group">
+              <label for="transferRecipient">Chave PIX / Destinatário:</label>
+              <input type="text" id="transferRecipient" placeholder="Ex: Maria Clara" required>
+            </div>
+            <div class="form-group">
+              <label for="transferAmount">Valor (R$):</label>
+              <input type="number" id="transferAmount" step="0.01" min="0.01" placeholder="0,00" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Transferir PIX</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- HISTÓRICO E EXTRATO -->
+      <div class="card">
+        <h2>📜 Extrato de Transações</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Data / Hora</th>
+                <th>Tipo</th>
+                <th>Descrição / Favorecido</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody id="transactionHistory">
+              <!-- As transações serão inseridas via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
